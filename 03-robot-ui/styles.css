@@ -1,0 +1,70 @@
+:root {
+  --bg: #f6f7ef;
+  --ink: #1f2933;
+  --accent: #cc5a2b;
+  --panel: #fffdf7;
+  --line: #dbc9ae;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top right, #fde1c8 0%, var(--bg) 40%);
+  color: var(--ink);
+}
+
+.app {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+input,
+button {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.error {
+  border-color: #b33232;
+  color: #7f1d1d;
+  background: #fff1f1;
+}

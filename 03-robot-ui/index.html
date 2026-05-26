@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toy Robot UI Starter</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1>Toy Robot UI</h1>
+
+      <section class="panel">
+        <label for="apiBase">API base URL</label>
+        <input id="apiBase" type="text" value="http://localhost:3000" />
+        <button id="createSessionBtn">Create Session</button>
+        <p id="sessionInfo">No session</p>
+      </section>
+
+      <section class="panel">
+        <label for="commandInput">Command</label>
+        <input id="commandInput" type="text" placeholder="PLACE 0,0,NORTH" />
+        <button id="sendCommandBtn" disabled>Send Command</button>
+      </section>
+
+      <section class="panel">
+        <h2>State</h2>
+        <pre id="stateView">{}</pre>
+      </section>
+
+      <section class="panel">
+        <h2>History</h2>
+        <ul id="historyList"></ul>
+      </section>
+
+      <section class="panel error" id="errorBox" hidden></section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

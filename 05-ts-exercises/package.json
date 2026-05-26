@@ -1,0 +1,21 @@
+{
+  "name": "ts-advanced-exercises",
+  "version": "1.0.0",
+  "description": "Advanced TypeScript exercises covering interfaces, overloading, generics, discriminated unions, and this context",
+  "main": "exercises.ts",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "keywords": [
+    "typescript",
+    "advanced",
+    "interfaces",
+    "generics",
+    "discriminated-unions",
+    "function-overloading"
+  ],
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
