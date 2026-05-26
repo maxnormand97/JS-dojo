@@ -7,15 +7,63 @@
 // EXERCISE 1: CLOSURES & SCOPE
 // ============================================================================
 
-// TODO: Return a closure that multiplies by captured value.
+
+// A closure is a function that 'remembers' the environment in which it was
+// created, even after the enviroment has finished executing. This means that it
+// can access variables from its outer scope not just its own local variables.
+
+// Passing a function as an argument is related to Higher-order functions, closures
+// are more about retaining access to variable from an outer scope.
+
+// Because they encapsulate private state we can 'hide' varaibles inside the functions scope
+// keeping them safe and not accessible from the outside. This is great for things like
+// counters and caches or just data you don't want to expose locally.
+
+
 function createMultiplier(multiplier) {
+  // inner function to multiply whats passed in from the outer
+  return function (value) {
+    return value * multiplier;
+  }
 }
 
-// TODO: Build counter with private state.
+const double = createMultiplier(2)
+console.log(double(5))
+
+// we need something to increment count
 function createCounter() {
+  let count = 0 // private var only accessible in the scope of this function
+  
+  // we return a function call that updates this private variable
+  return function () {
+    return ++count
+  }
 }
 
-// TODO: Explain var vs let vs const with examples.
+const counter = createCounter()
+console.log(counter()) // 1
+console.log(counter()) // 2
+// ect
+
+// Advanced counter a closure can have multiple function definitions
+function createAdvancedCounter() {
+  let count = 0
+  return {
+    // we can define multiple functions to update our private variables
+    increment: function() { return ++count; },
+    decrement: function() { return --count; }
+  }
+}
+
+const advancdCounter = createAdvancedCounter()
+console.log(advancdCounter.increment)
+console.log(advancdCounter.decrement)
+
+
+// let is block scoped and mutable
+// var is function scoped and can lead to bugs due to hoisting and wider scope
+// const is block scoped but the variable binding cannot be re-assigned but if its
+// an object there contents can be mutated.
 
 // ============================================================================
 // EXERCISE 2: PROMISES & ASYNC/AWAIT
