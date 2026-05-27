@@ -19,7 +19,6 @@
 // keeping them safe and not accessible from the outside. This is great for things like
 // counters and caches or just data you don't want to expose locally.
 
-
 function createMultiplier(multiplier) {
   // inner function to multiply whats passed in from the outer
   return function (value) {
@@ -55,9 +54,9 @@ function createAdvancedCounter() {
   }
 }
 
-const advancdCounter = createAdvancedCounter()
-console.log(advancdCounter.increment)
-console.log(advancdCounter.decrement)
+const advancedCounter = createAdvancedCounter()
+console.log(advancedCounter.increment)
+console.log(advancedCounter.decrement)
 
 
 // let is block scoped and mutable
@@ -65,24 +64,96 @@ console.log(advancdCounter.decrement)
 // const is block scoped but the variable binding cannot be re-assigned but if its
 // an object there contents can be mutated.
 
+// Hoisting in Javascript is the behavior where variable and function declarations
+// are moved or 'hoisted' to the top of their containing scope during the compilation phase
+// before code execution
+
+// function declarations are fully hoisted: meaning you can call them before they appear in the code
+// var declarations are hoisted and initialized as undefined but assignments stay in place
+// let and const are hoisted by not initialized so accessing them before their declarations causes 
+// reference errors
+
+  // for example var can cause issues because variables are hoisted and initialized as undefined
+  // not with the assigned value. So if you use it before its assignment code can blow up.
+  // this is one reason we prefer the use of let and const over var, and mainly because they are block scoped
+
+for (var index = 0; index < 3; index++) {
+  setTimeout(() => {
+    console.log(i) // prints 3 3 3 not 0,1,2
+  }, 100); 
+}
+
 // ============================================================================
 // EXERCISE 2: PROMISES & ASYNC/AWAIT
 // ============================================================================
 
-// TODO: Return a promise that resolves after ms.
+// A promise represents a value that may be available now, later or never (if it fails)
+// async/await makes working with promises easier by letting you write async code that 
+// looks synchronous
+// promises and async/await are especially useful for api calls, timers or any operation that 
+// takes time and shouldn't block the rest of your code.
+
 function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, ms);
+  })
 }
 
-// TODO: Use async/await with try/catch.
 async function waitAndPrint() {
+  try {
+    await delay(1000);
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-// TODO: Implement fetchUserData with proper error handling.
+async function fetchFakeUserData(userId) {
+  try {
+    // await some call to and api request using the userId
+    // if nothing is returned we hit our catch
+    const user = await delay(500).then(() => ({ id: userId, name: "Test User" }))
+    if (!user) {
+      throw new Error("user not found")
+    }
+
+    return user;
+  } catch (error) {
+    console.error("failed to fetch", error)
+  }
+}
+
 async function fetchUserData(userId) {
+  try {
+    const response = await fetch(`https://some_api/${userId}`)
+
+    if (!response.ok) {
+      throw new Error("HTTP error", response.error)
+    }
+
+    const user = await response.json()
+
+    if (!user) {
+      throw new Error('no data')
+    }
+
+    return user 
+  } catch (error) {
+     console.error("failed to fetch", error)
+  }
 }
 
-// TODO: Fetch many users in parallel with Promise.all.
 async function fetchMultipleUsers(userIds) {
+  try {
+    const userPromises = userIds.map(id => fetchUserData(id))
+    // wait for all promises to resolve
+    const users = await Promise.all(userPromises)
+    return users
+  } catch (error) {
+    console.error("Failed to fetch multiple users:", error);
+    return [];
+  }
 }
 
 // ============================================================================
