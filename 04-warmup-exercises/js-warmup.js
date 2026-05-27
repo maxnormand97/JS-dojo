@@ -199,7 +199,32 @@ printUser(user) // "alice: 85"
 // EXERCISE 4: SPREAD OPERATOR
 // ============================================================================
 
-// TODO: Practice immutable array/object updates.
+// the spread operator `...` lets you create shallow copies and add or merge values
+// into arrays and objects without mutating the originals
+
+// immutability is crucial in react / redux because it helps with predictable state updates.
+// enables efficient change in direction adn avoids bugs from unintended side effects.
+
+// shallow copy of array
+const array = [1,2,3]
+const arrCopy = [...array] // generates new array clone
+
+// add an item to an array (immutable)
+const arr2 = [1,2,3]
+const newArr2 = [...arr2, 4] // 1 2 3 4
+
+// shallow copy of an object
+const userOne = {id: 1, name: 'alice'}
+const userCopy = {...userOne}
+
+// update an object property
+const updatedUser = {...userOne, name: 'baz'}
+
+// merge two objects
+const A = {x: 1, y: 2}
+const B = {x: 1, y: 2}
+const merged = {...A, ...B}
+
 
 // ============================================================================
 // EXERCISE 5: ARRAY METHODS

@@ -98,10 +98,14 @@ console.log(filterEventNumbers([1, 2, 3, 4, 5, 6]))
  * 
  * Example: "hello world" → "Hello World"
  */
-function kata6_capitalize(str: string): string {
-  // TODO: Implement
-  return '';
+
+function capitalize(str: string): string {
+  // we want to convert the string into an array but we want to split by the word
+  // then we want to update the fist element of each array the to upper case.
+  return str.split(" ").map(word => word[0].toUpperCase() + word.slice(1)).join(" ")
 }
+
+capitalize("hello world")
 
 /**
  * KATA 7: Duplicate Array Elements
@@ -109,10 +113,11 @@ function kata6_capitalize(str: string): string {
  * 
  * Example: [1, 2, 3] → [2, 4, 6]
  */
-function kata7_doubleArray(numbers: number[]): number[] {
-  // TODO: Implement
-  return [];
+function doubleArray(numbers: number[]): number[] {
+  return numbers.map(number => number * 2);
 }
+
+console.log(doubleArray([1, 2, 3]))
 
 /**
  * KATA 8: Type Custom Type
@@ -249,9 +254,10 @@ console.log(groupBy(testItems, 'name'))
  * 
  * Example: [1, [2, 3], [4, [5, 6]]] → [1, 2, 3, 4, 5, 6]
  */
-function kata13_flattenArray(arr: any[]): any[] {
-  // TODO: Implement
-  return [];
+// TODO: practice legacy broswer version as well here..
+
+function flattenArray(arr: any[]): any[] {
+  return arr.flat(Infinity)
 }
 
 /**
