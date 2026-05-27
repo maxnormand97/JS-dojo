@@ -160,7 +160,40 @@ async function fetchMultipleUsers(userIds) {
 // EXERCISE 3: DESTRUCTURING
 // ============================================================================
 
-// TODO: Practice object, array, nested, defaults, and param destructuring.
+// Destructuring lets you only extract the values you need from objects and arrays,
+// making your code cleaner and more readable without modifying the original data.
+
+// Object Destructuring
+const user = { id: 1, name: 'foo', score: 85 }
+const { name, score } = user;
+console.log(name) // alice
+console.log(score) // 85
+
+// Array Destructuring
+const arr = [10,20,30]
+const [first, ,third] = arr // only get first and last elements
+console.log(first) // 10
+console.log(third) // 30
+
+// Nested Destructuring
+const person = { name: "bob", address: {city: "paris"}}
+const {address: {city}} = person
+console.log(city); // paris
+
+// Default values, we can see default values to undefined object props with destructuring
+const {age = 30} = user
+
+const [a, b = 5] = [1]
+console.log(a) // 1
+console.log(b) // 5
+
+// Destructuring in function params
+function printUser({name, score}) {
+  console.log(`${name}: ${score}`);
+}
+
+printUser(user) // "alice: 85"
+
 
 // ============================================================================
 // EXERCISE 4: SPREAD OPERATOR
