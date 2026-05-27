@@ -260,16 +260,21 @@ function flattenArray(arr: any[]): any[] {
   return arr.flat(Infinity)
 }
 
+console.log(flattenArray([1, [2, 3], [4, [5, 6]]]))
+
 /**
  * KATA 14: Unique Elements
  * Return only unique elements from an array
  * 
  * Example: [1, 2, 2, 3, 3, 3, 4] → [1, 2, 3, 4]
  */
-function kata14_unique<T>(arr: T[]): T[] {
-  // TODO: Implement
-  return [];
+
+// NOTE: remember the magic of Set declaring a new one will automatically remove duplicates from an array
+function returnUniqueValues<T>(arr: T[]): T[] {
+  return [... new Set(arr)];
 }
+
+console.log(returnUniqueValues([1, 2, 2, 3, 3, 3, 4]))
 
 /**
  * KATA 15: Sort By Key
